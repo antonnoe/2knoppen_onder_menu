@@ -5,31 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum Knoppen</title>
     <style>
-        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif; }
-        .action-buttons-container { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; padding: 10px 0; }
-        .button-group { display: flex; align-items: center; gap: 8px; }
-        .main-button { display: inline-block; background: #800000; color: #ffffff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 10pt; font-weight: 600; }
-        .tooltip { position: relative; }
-        .tooltip-trigger { display: flex; justify-content: center; align-items: center; width: 20px; height: 20px; background-color: #f0f0f0; color: #555555; border-radius: 50%; font-weight: bold; cursor: help; font-size: 14px; border: 1px solid #cccccc; }
-        .tooltip-content { visibility: hidden; opacity: 0; width: 240px; background-color: #333; color: #fff; text-align: left; border-radius: 6px; padding: 10px; font-size: 13px; font-weight: normal; transition: opacity 0.3s, visibility 0.3s; position: absolute; z-index: 9999; bottom: 150%; left: 50%; transform: translateX(-50%); }
-        .tooltip-arrow { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 5px; border-style: solid; border-color: #333 transparent transparent transparent; }
-        .tooltip:hover .tooltip-content { visibility: visible; opacity: 1; }
+        /* Deze CSS is specifiek ontworpen om het 'afknip'-probleem op te lossen */
+        body { 
+            margin: 0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+        }
+        .action-buttons-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-start; /* Lijn bovenaan uit */
+            gap: 16px; 
+            flex-wrap: wrap; 
+            padding-top: 10px;
+        }
+        .button-group { 
+            display: flex; 
+            flex-direction: column; /* Alles onder elkaar */
+            align-items: center;
+        }
+        .main-button-wrapper { /* Wrapper voor knop + vraagteken */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .main-button { 
+            display: inline-block; 
+            background: #800000; 
+            color: #ffffff; 
+            padding: 6px 14px; 
+            border-radius: 6px; 
+            text-decoration: none; 
+            font-size: 10pt; 
+            font-weight: 600; 
+        }
+        .tooltip-trigger { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 20px; 
+            height: 20px; 
+            background-color: #f0f0f0; 
+            color: #555555; 
+            border-radius: 50%; 
+            font-weight: bold; 
+            cursor: help; 
+            font-size: 14px; 
+            border: 1px solid #cccccc; 
+        }
+        .tooltip-content {
+            /* Standaard onzichtbaar en neemt geen ruimte in */
+            display: none;
+            
+            /* Uiterlijk */
+            box-sizing: border-box;
+            width: 280px; 
+            margin-top: 10px;
+            background-color: #f5f5f5; 
+            color: #333333; 
+            border: 1px solid #dddddd;
+            text-align: left;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: normal;
+        }
+        /* De magie: toon de tekst bij hover op de HELE groep */
+        .button-group:hover .tooltip-content {
+            display: block; /* Maak de tekst zichtbaar */
+        }
     </style>
 </head>
 <body>
     <div class="action-buttons-container">
         <div class="button-group">
-            <a href="https://www.nederlanders.fr/profiles/blog/new" target="_blank" rel="noopener" class="main-button">PLAATS BERICHT</a>
-            <div class="tooltip">
+            <div class="main-button-wrapper">
+                <a href="https://www.nederlanders.fr/profiles/blog/new" target="_blank" rel="noopener" class="main-button">PLAATS BERICHT</a>
                 <span class="tooltip-trigger">?</span>
-                <span class="tooltip-content">Gebruik deze knop om een discussie te starten, een vraag te stellen, een kort verhaal te delen of een mededeling te doen op het algemene forum. We zijn u dankbaar voor uw bericht.<span class="tooltip-arrow"></span></span>
+            </div>
+            <div class="tooltip-content">
+                Gebruik deze knop om een discussie te starten, een vraag te stellen, een kort verhaal te delen of een mededeling te doen op het algemene forum. We zijn u dankbaar voor uw bericht.
             </div>
         </div>
         <div class="button-group">
-            <a href="https://www.nederlanders.fr/page/betaalpagina-berichten" target="_blank" rel="noopener" class="main-button">PLAATS ADVERTENTIE</a>
-            <div class="tooltip">
+            <div class="main-button-wrapper">
+                <a href="https://www.nederlanders.fr/page/betaalpagina-berichten" target="_blank" rel="noopener" class="main-button">PLAATS ADVERTENTIE</a>
                 <span class="tooltip-trigger">?</span>
-                <span class="tooltip-content">Gebruik deze knop voor commerciële berichten, het aanbieden van producten of diensten, vastgoedadvertenties en vacatures. Voor deze berichten wordt een bijdrage aan de instandhoudingskosten van ons forum gevraagd. We hopen op uw begrip.<span class="tooltip-arrow"></span></span>
+            </div>
+            <div class="tooltip-content">
+                Gebruik deze knop voor commerciële berichten, het aanbieden van producten of diensten, vastgoedadvertenties en vacatures. Voor deze berichten wordt een bijdrage aan de instandhoudingskosten van ons forum gevraagd. We hopen op uw begrip.
             </div>
         </div>
     </div>
